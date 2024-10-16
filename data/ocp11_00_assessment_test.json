@@ -1,0 +1,827 @@
+{
+    "title": "The Assessment Test",
+    "id": "d86067b6-b21f-4f87-9e61-3dfac4efafc6",
+    "bundle": "OCP Java SE 11 Programmer",
+    "questions": [
+        {
+            "number": 1,
+            "title": "What is the result of the following program?",
+            "code": "1: public class MathFunctions {\n2: public static void addToInt(int x, int amountToAdd) { \n3: x = x + amountToAdd;\n4: }\n5: public static void main(String[] args) {\n6: var a = 15;\n7: var b = 10;\n8: MathFunctions.addToInt(a, b);\n9: System.out.println(a); } }",
+            "multipleOptions": false,
+            "options": [
+                {
+                    "id": "A",
+                    "text": "10"
+                },
+                {
+                    "id": "B",
+                    "text": "15"
+                },
+                {
+                    "id": "C",
+                    "text": "25"
+                },
+                {
+                    "id": "D",
+                    "text": "Compiler error on line 3"
+                },
+                {
+                    "id": "E",
+                    "text": "Compiler error on line 8"
+                },
+                {
+                    "id": "F",
+                    "text": "None of the above"
+                }
+            ],
+            "answer": {
+                "ids": ["B"],
+                "explanation": "The code compiles successfully, so options D and E are incorrect. The value of a cannot be changed by the addToInt() method, no matter what the method does, because only a copy of the variable is passed into the parameter x. Therefore, a does not change, and the output on line 9 is 15. For more information, see Chapter 7."
+            }
+        },
+        {
+            "number": 2,
+            "title": "What is the output of the following program? (Choose all that apply.)",
+            "code": "1: interface HasTail { int getTailLength(); }\n2: abstract class Puma implements HasTail {\n3: protected int getTailLength() { return 4; }\n4: }\n5: public class Cougar implements HasTail {\n6: public static void main(String[] args) {\n7: var puma = new Puma();\n8: System.out.println(puma.getTailLength());\n9: }\n10: public int getTailLength(int length) { return 2; }\n11: }",
+            "multipleOptions": true,
+            "options": [
+                {
+                    "id": "A",
+                    "text": "2"
+                },
+                {
+                    "id": "B",
+                    "text": "4"
+                },
+                {
+                    "id": "C",
+                    "text": "The code will not compile because of line 3."
+                },
+                {
+                    "id": "D",
+                    "text": "The code will not compile because of line 5."
+                },
+                {
+                    "id": "E",
+                    "text": "The code will not compile because of line 7."
+                },
+                {
+                    "id": "F",
+                    "text": "The code will not compile because of line 10."
+                },
+                {
+                    "id": "G",
+                    "text": "The output cannot be determined from the code provided."
+                }
+            ],
+            "answer": {
+                "ids": ["C", "D", "E"],
+                "explanation": "The program contains three compiler errors. First, the method getTailLength() in the interface HasTail is implicitly to be public, since it is an abstract interface method. Therefore, line 3 does not compile since it is an invalid override, reducing the visibility of the method, making option C correct. Next, the class Cougar implements an overloaded version of getTailLength() with a different signature than the abstract interface method it inherits. For this reason, the declaration of Cougar is invalid, and option D is correct. Finally, option E is correct, since Puma is marked abstract and cannot be instantiated. For more information, see Chapter 9."
+            }
+        },
+        {
+            "number": 3,
+            "title": "What is the output of the following code snippet?",
+            "code": "int moon = 9, star = 2 + 2 * 3;\nfloat sun = star > 10 ? 1 : 3;\ndouble jupiter = (sun + moon) - 1.0f;\nint mars = --moon <= 8 ? 2 : 3;\nSystem.out.println(sun + \"-\" + jupiter + \"-\" + mars);",
+            "multipleOptions": false,
+            "options": [
+                {
+                    "id": "A",
+                    "text": "1-11-2"
+                },
+                {
+                    "id": "B",
+                    "text": "3.0-11.0-2"
+                },
+                {
+                    "id": "C",
+                    "text": "1.0-11.0-3"
+                },
+                {
+                    "id": "D",
+                    "text": "3.0-13.0-3"
+                },
+                {
+                    "id": "E",
+                    "text": "3.0f-12-2"
+                },
+                {
+                    "id": "F",
+                    "text": "The code does not compile because one of assignments requires an explicit numeric cast."
+                }
+            ],
+            "answer": {
+                "ids": ["B"],
+                "explanation": "Initially, moon is assigned a value of 9, while star is assigned a value of 8. The multiplication operator (*) has a higher order of precedence than the addition operator (+), so it gets evaluated first. Since star is not greater than 10, sun is assigned a value of 3, which is promoted to 3.0f as part of the assignment. The value of jupiter is (3.0f + 9) - 1.0, which is 11.0f. This value is implicitly promoted to double when it is assigned. In the last assignment, moon is predecremented from 9 to 8, with the value of the expression returned as 8. Since 8 is less than or equal to 8 is true, mars is set to a value of 2. The final output is 3.0-11.0-2, making option B the correct answer. For more information, see Chapter 3."
+            }
+        },
+        {
+            "number": 4,
+            "title": "How many times is the word true printed?",
+            "code": "var s1 = \"Java\";\nvar s2 = \"Java\";\nvar s3 = \"Ja\".concat(\"va\");\nvar s4 = s3.intern();\nvar sb1 = new StringBuilder();\nsb1.append(\"Ja\").append(\"va\");\n\nSystem.out.println(s1 == s2);\nSystem.out.println(s1.equals(s2));\nSystem.out.println(s1 == s3);\nSystem.out.println(s1 == s4);\nSystem.out.println(sb1.toString() == s1);\nSystem.out.println(sb1.toString().equals(s1));",
+            "multipleOptions": false,
+            "options": [
+                {
+                    "id": "A",
+                    "text": "Once"
+                },
+                {
+                    "id": "B",
+                    "text": "Twice"
+                },
+                {
+                    "id": "C",
+                    "text": "Three times"
+                },
+                {
+                    "id": "D",
+                    "text": "Four times"
+                },
+                {
+                    "id": "E",
+                    "text": "Five times"
+                },
+                {
+                    "id": "F",
+                    "text": "Six times"
+                },
+                {
+                    "id": "G",
+                    "text": "The code does not compile."
+                }
+            ],
+            "answer": {
+                "ids": ["D"],
+                "explanation": "String literals are used from the string pool. This means that s1 and s2 refer to the same object and are equal. Therefore, the first two print statements print true. The concat() method forces a new String to be created making the third print statement print false. The intern() method reverts the String to the one from the string pool. Therefore, the fourth print statement prints true. The fifth statement prints false because toString() uses a method to compute the value, and it is not from the string pool. The final print statement again prints true because equals() looks at the values of String objects. For more information, see Chapter 5."
+            }
+        },
+        {
+            "number": 5,
+            "title": "The following code appears in a file named Flight.java. What is the result of compiling this source file?",
+            "code": "1: public class Flight {\n2: private FlightNumber number;\n3:\n4: public Flight(FlightNumber number) {\n5: this.number = number;\n6: } }\n7: public class FlightNumber {\n8: public int value;\n9: public String code; }",
+            "multipleOptions": false,
+            "options": [
+                {
+                    "id": "A",
+                    "text": "The code compiles successfully and two bytecode files are generated: Flight.class and FlightNumber.class."
+                },
+                {
+                    "id": "B",
+                    "text": "The code compiles successfully and one bytecode file is generated: Flight.class."
+                },
+                {
+                    "id": "C",
+                    "text": "A compiler error occurs on line 2."
+                },
+                {
+                    "id": "D",
+                    "text": "A compiler error occurs on line 4."
+                },
+                {
+                    "id": "E",
+                    "text": "A compiler error occurs on line 7."
+                }
+            ],
+            "answer": {
+                "ids": ["E"],
+                "explanation": "The code does not compile because Java allows at most one public class in the same file. Either the FlightNumber class must not be declared public or it should be moved to its own source file named FlightNumber.java. The compiler error occurs on line 7, so the answer is option E. For more information, see Chapter 1."
+            }
+        },
+        {
+            "number": 6,
+            "title": "Which of the following will run a modular program?",
+            "code": null,
+            "multipleOptions": false,
+            "options": [
+                {
+                    "id": "A",
+                    "text": "java -cp modules mod/class"
+                },
+                {
+                    "id": "B",
+                    "text": "java -cp modules -m mod/class"
+                },
+                {
+                    "id": "C",
+                    "text": "java -cp modules -p mod/class"
+                },
+                {
+                    "id": "D",
+                    "text": "java -m modules mod/class"
+                },
+                {
+                    "id": "E",
+                    "text": "java -m modules -p mod/class"
+                },
+                {
+                    "id": "F",
+                    "text": "java -p modules mod/class"
+                },
+                {
+                    "id": "G",
+                    "text": "java -p modules -m mod/class"
+                }
+            ],
+            "answer": {
+                "ids": ["G"],
+                "explanation": "This exam requires knowing how to run at the command line. The new -p option specifies the module path. The new -m option precedes the program to be run in the format moduleName/fullyQualifiedClassName. Option G is the only one that matches these requirements. For more information, see Chapter 11."
+            }
+        },
+        {
+            "number": 7,
+            "title": "What is the result of executing the following code snippet?",
+            "code": "final int score1 = 8, score2 = 3;\nchar myScore = 7;\nswitch (myScore) {\ndefault:\nscore1:\n2: 6: System.out.print(\"great-\");\n4: System.out.print(\"good-\"); break;\nscore2:\n1: System.out.print(\"not good-\");\n}",
+            "multipleOptions": false,
+            "options": [
+                {
+                    "id": "A",
+                    "text": "great-good-"
+                },
+                {
+                    "id": "B",
+                    "text": "good-"
+                },
+                {
+                    "id": "C",
+                    "text": "not good-"
+                },
+                {
+                    "id": "D",
+                    "text": "great-good-not-good-"
+                },
+                {
+                    "id": "E",
+                    "text": "The code does not compile because default is not a keyword in Java."
+                },
+                {
+                    "id": "F",
+                    "text": "The code does not compile for a different reason."
+                }
+            ],
+            "answer": {
+                "ids": ["F"],
+                "explanation": "The code does not compile because switch statements require case statements before the colon (:). For example, case score1: would compile. For this reason, option F is the correct answer. If the six missing case statements were added throughout this snippet, then the default branch would be executed as 7 is not matched in any of the case statements, resulting in an output of great-good- and making option A correct. For more information, see Chapter 4."
+            }
+        },
+        {
+            "number": 8,
+            "title": "Which of the following lines can fill in the blank to print true? (Choose all that apply.)",
+            "code": "10: public static void main(String[] args) {\n11: \tSystem.out.println(____________________);\n12: }\n13: private static boolean test(Predicate<Integer> p) {\n14: \treturn p.test(5);\n15: }",
+            "multipleOptions": true,
+            "options": [
+                {
+                    "id": "A",
+                    "text": "test(i -> i == 5)"
+                },
+                {
+                    "id": "B",
+                    "text": "test(i -> {i == 5;})"
+                },
+                {
+                    "id": "C",
+                    "text": "test((i) -> i == 5)"
+                },
+                {
+                    "id": "D",
+                    "text": "test((int i) -> i == 5)"
+                },
+                {
+                    "id": "E",
+                    "text": "test((int i) -> {return i == 5;})"
+                },
+                {
+                    "id": "F",
+                    "text": "test((i) -> {return i == 5;})"
+                }
+            ],
+            "answer": {
+                "ids": ["A", "C", "F"],
+                "explanation": "The Predicate interface takes a single parameter and returns a boolean. Lambda expressions with one parameter are allowed to omit the parentheses around the parameter list, making options A and C equivalent and both correct. The return statement is optional when a single statement is in the body, making option F correct. Option B is incorrect because a return statement must be used if braces are included around the body. Options D and E are incorrect because the type is Integer in the predicate and int in the lambda. Autoboxing works for collections not inferring predicates. If these two were changed to Integer, they would be correct. For more information, see Chapter 6."
+            }
+        },
+        {
+            "number": 9,
+            "title": "Which of the following are valid instance members of a class? (Choose all that apply.)",
+            "code": null,
+            "multipleOptions": true,
+            "options": [
+                {
+                    "id": "A",
+                    "text": "var var = 3;"
+                },
+                {
+                    "id": "B",
+                    "text": "Var case = new Var();"
+                },
+                {
+                    "id": "C",
+                    "text": "void var() {}"
+                },
+                {
+                    "id": "D",
+                    "text": "int Var() { var _ = 7; return _;}"
+                },
+                {
+                    "id": "E",
+                    "text": "String new = \"var\";"
+                },
+                {
+                    "id": "F",
+                    "text": "var var() { return null; }"
+                }
+            ],
+            "answer": {
+                "ids": ["C"],
+                "explanation": "Option A is incorrect because var is only allowed as a type for local variables, not instance members. Options B and E are incorrect because new and case are reserved words and cannot be used as identifiers. Option C is correct, as var can be used as a method name. Option D is incorrect because a single underscore (_) cannot be used as an identifier starting with Java 9. Finally, option F is incorrect because var cannot be specified as the return type of a method. For more information, see Chapter 2."
+            }
+        },
+        {
+            "number": 10,
+            "title": "Which of the following types can be inserted into the blank that allows the program to compile successfully? (Choose all that apply.)",
+            "code": "1: import java.util.*;\n2: interface CanSwim {}\n3: class Amphibian implements CanSwim {}\n4: abstract class Tadpole extends Amphibian {}\n5: public class FindAllTadPole {\n6: public static void main(String[] args) {\n7: var tadpoles = new ArrayList<Tadpole>();\n8: for (Amphibian amphibian : tadpoles) {\n9: ____________ tadpole = amphibian;\n10: } } }",
+            "multipleOptions": true,
+            "options": [
+                {
+                    "id": "A",
+                    "text": "CanSwim"
+                },
+                {
+                    "id": "B",
+                    "text": "Boolean"
+                },
+                {
+                    "id": "C",
+                    "text": "Amphibian"
+                },
+                {
+                    "id": "D",
+                    "text": "Tadpole"
+                },
+                {
+                    "id": "E",
+                    "text": "Object"
+                },
+                {
+                    "id": "F",
+                    "text": "None of the above; the program contains a compilation error."
+                }
+            ],
+            "answer": {
+                "ids": ["A", "C", "E"],
+                "explanation": "The for-each loop implicitly casts each Tadpole object to an Amphibian reference, which is permitted because Tadpole is a subclass of Amphibian. From there, any supertype of Amphibian is permitted without an explicit cast. This includes CanSwim, which Amphibian implements, and Object, which all classes extend from, making options A and E correct. Option C is also correct since the reference is being cast to the same type. Option B is incorrect, since Boolean is not a supertype of Amphibian. Option D is also incorrect. Even though the underlying object is a Tadpole instance, it requires an explicit cast on line 9 since the reference type is Amphibian. Option F is incorrect because there are options that allow the code to compile. For more information, see Chapter 8."
+            }
+        },
+        {
+            "number": 11,
+            "title": "Which of the following expressions compile without error? (Choose all that apply.)",
+            "code": null,
+            "multipleOptions": true,
+            "options": [
+                {
+                    "id": "A",
+                    "text": "int monday = 3 + 2.0;"
+                },
+                {
+                    "id": "B",
+                    "text": "double tuesday = 5_6L;"
+                },
+                {
+                    "id": "C",
+                    "text": "boolean wednesday = 1 > 2 ? !true;"
+                },
+                {
+                    "id": "D",
+                    "text": "short thursday = (short)Integer.MAX_VALUE;"
+                },
+                {
+                    "id": "E",
+                    "text": "long friday = 8.0L;"
+                },
+                {
+                    "id": "F",
+                    "text": "var saturday = 2_.0;"
+                },
+                {
+                    "id": "G",
+                    "text": "None of the above"
+                }
+            ],
+            "answer": {
+                "ids": ["B", "D"],
+                "explanation": "Option A does not compile, as the expression 3 + 2.0 is evaluated as a double, and a double requires an explicit cast to be assigned to an int. Option B compiles without issue, as a long value can be implicitly cast to a double. Option C does not compile because the ternary operator (? :) is missing a colon (:), followed by a second expression. Option D is correct. Even though the int value is larger than a short, it is implicitly cast to a short, which means the value will wrap around to fit in a short. Option E is incorrect, as you cannot use a decimal (.) with the long (L) postfix. Finally, option F is incorrect, as an underscore cannot be used next to a decimal point. For more information, see Chapter 3."
+            }
+        },
+        {
+            "number": 12,
+            "title": "Suppose you have a module named com.vet. Where could you place the following module-info.java file to create a valid module?",
+            "code": "public module com.vet {\n\texports com.vet;\n}",
+            "multipleOptions": false,
+            "options": [
+                {
+                    "id": "A",
+                    "text": "At the same level as the com folder"
+                },
+                {
+                    "id": "B",
+                    "text": "At the same level as the vet folder"
+                },
+                {
+                    "id": "C",
+                    "text": "Inside the vet folder"
+                },
+                {
+                    "id": "D",
+                    "text": "None of the above"
+                }
+            ],
+            "answer": {
+                "ids": ["D"],
+                "explanation": "If this were a valid module-info.java file, it would need to be placed at the root directory of the module, which is option A. However, a module is not allowed to use the public access modifier. Option D is correct because the provided file does not compile regardless of placement in the project. For more information, see Chapter 11."
+            }
+        },
+        {
+            "number": 13,
+            "title": "What is the result of compiling and executing the following program?",
+            "code": "1: public class FeedingSchedule {\n2: public static void main(String[] args) {\n3: var x = 5;\n4: var j = 0;\n5: OUTER: for (var i = 0; i < 3;)\n6: INNER: do {\n7: i++;\n8: x++;\n9: if (x > 10) break INNER;\n10: x += 4;\n11: j++;\n12: } while (j <= 2);\n13: System.out.println(x);\n14: } }",
+            "multipleOptions": false,
+            "options": [
+                {
+                    "id": "A",
+                    "text": "10"
+                },
+                {
+                    "id": "B",
+                    "text": "11"
+                },
+                {
+                    "id": "C",
+                    "text": "12"
+                },
+                {
+                    "id": "D",
+                    "text": "17"
+                },
+                {
+                    "id": "E",
+                    "text": "The code will not compile because of line 5."
+                },
+                {
+                    "id": "F",
+                    "text": "The code will not compile because of line 6."
+                }
+            ],
+            "answer": {
+                "ids": ["C"],
+                "explanation": "The code compiles and runs without issue; therefore, options E and F are incorrect. This type of problem is best examined one loop iteration at a time: On the first iteration of the outer loop i is 0, so the loop continues. On the first iteration of the inner loop, i is updated to 1 and x to 6. The if statement branch is not executed, and x is increased to 10 and j to 1. On the second iteration of the inner loop (since j = 1 and 1 <= 2), i is updated to 2 and x to 11. At this point, the if branch will evaluate to true for the remainder of the program run, which causes the flow to break out of the inner loop each time it is reached. On the second iteration of the outer loop (since i = 2), i is updated to 3 and x to 12. As before, the inner loop is broken since x is still greater than 10. On the third iteration of the outer loop, the outer loop is broken, as i is already not less than 3. The most recent value of x, 12, is output, so the answer is option C. For more information, see Chapter 4."
+            }
+        },
+        {
+            "number": 14,
+            "title": "Which statement about the following method is true?",
+            "code": "5: public static void main(String... unused) {\n6: System.out.print(\"a\");\n7: try (StringBuilder reader = new StringBuilder()) {\n8: System.out.print(\"b\");\n9: throw new IllegalArgumentException();\n10: } catch (Exception e || RuntimeException e) {\n11: System.out.print(\"c\");\n12: throw new FileNotFoundException();\n13: } finally {\n14: System.out.print(\"d\");\n15: } }",
+            "multipleOptions": false,
+            "options": [
+                {
+                    "id": "A",
+                    "text": "It compiles and prints abc."
+                },
+                {
+                    "id": "B",
+                    "text": "It compiles and prints abd."
+                },
+                {
+                    "id": "C",
+                    "text": "It compiles and prints abcd."
+                },
+                {
+                    "id": "D",
+                    "text": "One line contains a compiler error."
+                },
+                {
+                    "id": "E",
+                    "text": "Two lines contain a compiler error."
+                },
+                {
+                    "id": "F",
+                    "text": "Three lines contain a compiler error."
+                },
+                {
+                    "id": "G",
+                    "text": "It compiles but prints an exception at runtime."
+                }
+            ],
+            "answer": {
+                "ids": ["F"],
+                "explanation": "Line 5 does not compile as the FileNotFoundException thrown on line 12 is not handled or declared by the method. Line 7 does not compile because StringBuilder does not implement AutoCloseable and is therefore not compatible with a try-with-resource statement. Finally, line 10 does not compile as RuntimeException is a subclass of Exception in the multi-catch block, making it redundant. Since this method contains three compiler errors, option F is the correct answer. For more information, see Chapter 10."
+            }
+        },
+        {
+            "number": 15,
+            "title": "Which of the following are true statements? (Choose all that apply.)",
+            "code": null,
+            "multipleOptions": true,
+            "options": [
+                {
+                    "id": "A",
+                    "text": "The JDK contains a compiler."
+                },
+                {
+                    "id": "B",
+                    "text": "The JVM contains a compiler."
+                },
+                {
+                    "id": "C",
+                    "text": "The javac command creates a file containing bytecode."
+                },
+                {
+                    "id": "D",
+                    "text": "The java command creates a file containing bytecode."
+                },
+                {
+                    "id": "E",
+                    "text": "The JDK is contained in the JVM."
+                },
+                {
+                    "id": "F",
+                    "text": "The JVM is contained in the JDK."
+                }
+            ],
+            "answer": {
+                "ids": ["A", "C", "F"],
+                "explanation": "The Java Development Kit (JDK) is used when creating Java programs. It contains a compiler since it is a development tool making option A correct and option B incorrect. The JDK contains a Java Virtual Machine (JVM) making option F correct and option E incorrect. The compiler creates bytecode making option C correct and option D incorrect. For more information, see Chapter 1."
+            }
+        },
+        {
+            "number": 16,
+            "title": "Which lines in Tadpole give a compiler error? (Choose all that apply.)",
+            "code": "1: package animal;\n2: public class Frog {\n3: protected void ribbit() { }\n4: void jump() { }\n5: }\n\n1: package other;\n2: import animal.*;\n3: public class Tadpole extends Frog {\n4: public static void main(String[] args) {\n5: Tadpole t = new Tadpole();\n6: t.ribbit();\n7: t.jump();\n8: Frog f = new Tadpole();\n9: f.ribbit();\n10: f.jump();\n11: } }",
+            "multipleOptions": true,
+            "options": [
+                {
+                    "id": "A",
+                    "text": "5"
+                },
+                {
+                    "id": "B",
+                    "text": "6"
+                },
+                {
+                    "id": "C",
+                    "text": "7"
+                },
+                {
+                    "id": "D",
+                    "text": "8"
+                },
+                {
+                    "id": "E",
+                    "text": "9"
+                },
+                {
+                    "id": "F",
+                    "text": "10"
+                }
+            ],
+            "answer": {
+                "ids": ["C", "E", "F"],
+                "explanation": "The jump() method has default (package-private) access, which means it can be accessed only from the same package. Tadpole is not in the same package as Frog, causing lines 7 and 10 to give a compiler error, making options C and F correct. The ribbit() method has protected access, which means it can only be accessed from a subclass reference or in the same package. Line 6 is fine because Tadpole is a subclass. Line 9 does not compile because the variable reference is to a Frog, making option E correct. This is the trickiest question you can get on this topic on the exam. For more information, see Chapter 7."
+            }
+        },
+        {
+            "number": 17,
+            "title": "What is the output of the following program?",
+            "code": "1: class Deer {\n2: public Deer() {System.out.print(\"Deer\");}\n3: public Deer(int age) {System.out.print(\"DeerAge\");}\n4: protected boolean hasHorns() { return false; }\n5: }\n6: public class Reindeer extends Deer {\n7: public Reindeer(int age) {System.out.print(\"Reindeer\");}\n8: public boolean hasHorns() { return true; }\n9: public static void main(String[] args) {\n10: Deer deer = new Reindeer(5);\n11: System.out.println(\",\" + deer.hasHorns());\n12: } }",
+            "multipleOptions": false,
+            "options": [
+                {
+                    "id": "A",
+                    "text": "ReindeerDeer,false"
+                },
+                {
+                    "id": "B",
+                    "text": "DeerAgeReindeer,true"
+                },
+                {
+                    "id": "C",
+                    "text": "DeerReindeer,true"
+                },
+                {
+                    "id": "D",
+                    "text": "DeerReindeer,false"
+                },
+                {
+                    "id": "E",
+                    "text": "ReindeerDeer,true"
+                },
+                {
+                    "id": "F",
+                    "text": "DeerAgeReindeer,false"
+                },
+                {
+                    "id": "G",
+                    "text": "The code will not compile because of line 4."
+                },
+                {
+                    "id": "H",
+                    "text": "The code will not compile because of line 12."
+                }
+            ],
+            "answer": {
+                "ids": ["C"],
+                "explanation": "The code compiles and runs without issue, so options G and H are incorrect. First, the Reindeer object is instantiated using the constructor that takes an int value. Since there is no explicit call to the parent constructor, the compiler inserts super() as the first line of the constructor on line 7. The parent constructor is called, and Deer is printed on line 2. The flow returns to the constructor on line 7, which prints Reindeer. Next, the method hasHorns() is called. The reference type is Deer, and the underlying object type is Reindeer. Since Reindeer correctly overrides the hasHorns() method, the version in Reindeer is called, printing true. For these reasons, option C is the correct answer. For more information, see Chapter 8."
+            }
+        },
+        {
+            "number": 18,
+            "title": "What is printed by the following code? (Choose all that apply.)",
+            "code": "int[] array = {6,9,8};\nList<Integer> list = new ArrayList<>();\nlist.add(array[0]);\nlist.add(array[2]);\nlist.set(1, array[1]);\nlist.remove(0);\nSystem.out.println(list);\nSystem.out.println(\"C\" + Arrays.compare(array, new int[] {6, 9, 8}));\nSystem.out.println(\"M\" + Arrays.mismatch(array, new int[] {6, 9, 8}));",
+            "multipleOptions": true,
+            "options": [
+                {
+                    "id": "A",
+                    "text": "[8]"
+                },
+                {
+                    "id": "B",
+                    "text": "[9]"
+                },
+                {
+                    "id": "C",
+                    "text": "[Ljava.lang.String;@160bc7c0"
+                },
+                {
+                    "id": "D",
+                    "text": "C-1"
+                },
+                {
+                    "id": "E",
+                    "text": "C0"
+                },
+                {
+                    "id": "F",
+                    "text": "M-1"
+                },
+                {
+                    "id": "G",
+                    "text": "M0"
+                },
+                {
+                    "id": "H",
+                    "text": "The code does not compile."
+                }
+            ],
+            "answer": {
+                "ids": ["B", "E", "F"],
+                "explanation": "The array is allowed to use an anonymous initializer because it is in the same line as the declaration. The ArrayList uses the diamond operator. This specifies the type matches the one on the left without having to retype it. After adding the two elements, list contains [6, 8]. We then replace the element at index 1 with 9, resulting in [6, 9]. Finally, we remove the element at index 0, leaving [9] and making option B correct. Option C is incorrect because arrays output something that looks like a reference rather than a nicely printed list of values. Option E is correct because the compare() method returns 0 when the arrays are the same length and have the same elements. Option F is correct because the mismatch() method returns a -1 when the arrays are equivalent. For more information, see Chapter 5."
+            }
+        },
+        {
+            "number": 19,
+            "title": "Which statements about the following program are true? (Choose all that apply.)",
+            "code": "1: public class Grasshopper {\n2: public Grasshopper(String n) {\n3: name = n;\n4: }\n5: public static void main(String[] args) {\n6: Grasshopper one = new Grasshopper(\"g1\");\n7: Grasshopper two = new Grasshopper(\"g2\");\n8: one = two;\n9: two = null;\n10: one = null;\n11: }\n12: private String name;\n13: }",
+            "multipleOptions": true,
+            "options": [
+                {
+                    "id": "A",
+                    "text": "Immediately after line 8, no Grasshopper objects are eligible for garbage collection."
+                },
+                {
+                    "id": "B",
+                    "text": "Immediately after line 9, no Grasshopper objects are eligible for garbage collection."
+                },
+                {
+                    "id": "C",
+                    "text": "Immediately after line 8, only one Grasshopper object is eligible for garbage collection."
+                },
+                {
+                    "id": "D",
+                    "text": "Immediately after line 9, only one Grasshopper object is eligible for garbage collection."
+                },
+                {
+                    "id": "E",
+                    "text": "Immediately after line 10, only one Grasshopper object is eligible for garbage collection."
+                },
+                {
+                    "id": "F",
+                    "text": "The code does not compile."
+                }
+            ],
+            "answer": {
+                "ids": ["C", "D"],
+                "explanation": "Immediately after line 8, only Grasshopper g1, created on line 6, is eligible for garbage collection since both one and two point to Grasshopper g2, making option C correct and option A incorrect. Immediately after line 9, we still only have Grasshopper g1 eligible for garbage collection, since one points to it. For this reason, option B is incorrect and option D is correct. Reference two now points to null. Immediately after line 10, both Grasshopper objects are eligible for garbage collection since both one and two point to null, making option E incorrect. The code does compile, so option F is incorrect. Although it is traditional to declare instance variables early in the class, you don’t have to. For more information, see Chapter 2."
+            }
+        },
+        {
+            "number": 20,
+            "title": "Which of the following statements about error handling in Java are correct? (Choose all that apply.)",
+            "code": null,
+            "multipleOptions": true,
+            "options": [
+                {
+                    "id": "A",
+                    "text": "Checked exceptions are intended to be thrown by the JVM (and not the programmer)."
+                },
+                {
+                    "id": "B",
+                    "text": "Checked exceptions are required to be handled or declared."
+                },
+                {
+                    "id": "C",
+                    "text": "Errors are intended to be thrown by the JVM (and not the programmer)."
+                },
+                {
+                    "id": "D",
+                    "text": "Errors are required to be caught or declared."
+                },
+                {
+                    "id": "E",
+                    "text": "Runtime exceptions are intended to be thrown by the JVM (and not the programmer)."
+                },
+                {
+                    "id": "F",
+                    "text": "Runtime exceptions are required to be handled or declared."
+                }
+            ],
+            "answer": {
+                "ids": ["B", "C"],
+                "explanation": "Only checked exceptions are required to be handled or declared, making option B correct and option F incorrect. An Error is intended to be thrown by the JVM and never caught by the programmer, making option C correct and options A, D, and E incorrect. While a programmer could throw or catch an Error, this would be a horrible practice. For more information, see Chapter 10."
+            }
+        },
+        {
+            "number": 21,
+            "title": "Which of the following are valid method modifiers that cannot be used together in a method declaration? (Choose all that apply.)",
+            "code": null,
+            "multipleOptions": true,
+            "options": [
+                {
+                    "id": "A",
+                    "text": "null and final"
+                },
+                {
+                    "id": "B",
+                    "text": "abstract and private"
+                },
+                {
+                    "id": "C",
+                    "text": "public and private"
+                },
+                {
+                    "id": "D",
+                    "text": "nonstatic and abstract"
+                },
+                {
+                    "id": "E",
+                    "text": "private and final"
+                },
+                {
+                    "id": "F",
+                    "text": "abstract and static"
+                },
+                {
+                    "id": "G",
+                    "text": "protected and abstract"
+                }
+            ],
+            "answer": {
+                "ids": ["B", "C", "F"],
+                "explanation": "First, null and nonstatic are not valid method modifiers, making options A and D incorrect. Options B and F are correct, as abstract methods cannot be marked private or static, since they then would not be able to be overridden. Option C is also correct, as you cannot declare two access modifiers on the same method. Finally, options E and G are two sets of valid modifiers that can be used together in a method declaration. Using private with final is allowed, albeit redundant. For more information, see Chapter 9."
+            }
+        },
+        {
+            "number": 22,
+            "title": "Which of the following are true to sort the list? (Choose all that apply.)",
+            "code": "13: int multiplier = 1;\n14: multiplier *= -1;\n15: List<Integer> list = List.of(99, 66, 77, 88);\n16: list.sort(_____________);",
+            "multipleOptions": true,
+            "options": [
+                {
+                    "id": "A",
+                    "text": "Line 14 must be removed for any of the following lambdas to compile."
+                },
+                {
+                    "id": "B",
+                    "text": "Line 14 may remain for any of the following lambdas to compile."
+                },
+                {
+                    "id": "C",
+                    "text": "(x, y) -> multiplier * y.compareTo(x)"
+                },
+                {
+                    "id": "D",
+                    "text": "x, y -> multiplier * y.compareTo(x)"
+                },
+                {
+                    "id": "E",
+                    "text": "(x, y) -> return multiplier * y.compareTo(x)"
+                },
+                {
+                    "id": "F",
+                    "text": "x, y -> return multiplier * y.compareTo(x)"
+                }
+            ],
+            "answer": {
+                "ids": ["A"],
+                "explanation": "The first thing to notice is that multiplier is not effectively final since it is reassigned. None of the lambdas will compile, making option A correct. The next step is to look at the lambda syntax. Options D and F are invalid because lambdas with more than one parameter must have parentheses. Options E and F are invalid because a return statement may not be used in a lambda without a block present. While option C at least compiles, the code fails at runtime because List.of() creates an immutable list. This is tricky as none of the lambdas will work successfully. Therefore, option A is the only correct answer. For more information, see Chapter 6."
+            }
+        }
+    ]
+}

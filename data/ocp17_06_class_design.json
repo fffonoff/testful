@@ -1,0 +1,486 @@
+{
+	"title": "Chapter 6: Class Design",
+	"questions": [
+    	{
+        	"number": 1,
+        	"title": "Which code can be inserted to have the code print 2?",
+        	"code": "public class BirdSeed {\n   private int numberBags;\n   boolean call;\n \n   public BirdSeed() {\n      // LINE 1\n      call = false;\n      // LINE 2\n   }\n \n   public BirdSeed(int numberBags) {\n      this.numberBags = numberBags;\n   }\n \n   public static void main(String[] args) {\n      var seed = new BirdSeed();\n      System.out.print(seed.numberBags);\n   } }",
+        	"multipleOptions": false,
+        	"options": [
+            	{ "id": "A", "text": "Replace line 1 with BirdSeed(2);" },
+            	{ "id": "B", "text": "Replace line 2 with BirdSeed(2);" },
+            	{ "id": "C", "text": "Replace line 1 with new BirdSeed(2);" },
+            	{ "id": "D", "text": "Replace line 2 with new BirdSeed(2);" },
+            	{ "id": "E", "text": "Replace line 1 with this(2);" },
+            	{ "id": "F", "text": "Replace line 2 with this(2);" },
+            	{ "id": "G", "text": "The code prints 2 without any changes" }
+            ],
+        	"answer": {
+            	"ids": ["E"],
+            	"explanation": "Options A and B will not compile because constructors cannot be called without new. Options C and D will compile but will create a new object rather than setting the fields in this one. The result is the program will print 0, not 2, at runtime. Calling an overloaded constructor, using this(), or a parent constructor, using super(), is only allowed on the first line of the constructor, making option E correct and option F incorrect. Finally, option G is incorrect because the program prints 0 without any changes, not 2."
+            }
+        },
+    	{
+        	"number": 2,
+        	"title": "Which modifier pairs can be used together in a method declaration? (Choose all that apply.)",
+        	"code": null,
+        	"multipleOptions": true,
+        	"options": [
+            	{ "id": "A", "text": "static and final" },
+            	{ "id": "B", "text": "private and static" },
+            	{ "id": "C", "text": "static and abstract" },
+            	{ "id": "D", "text": "private and abstract" },
+            	{ "id": "E", "text": "abstract and final" },
+            	{ "id": "F", "text": "private and final" }
+            ],
+        	"answer": {
+            	"ids": ["B","F","A"],
+            	"explanation": "The final modifier can be used with private and static, making options A and F correct. Marking a private method final is redundant but allowed. A private method may also be marked static, making option B correct. Options C, D, and E are incorrect because methods marked static, private, or final cannot be overridden; therefore, they cannot be marked abstract."
+            }
+        },
+    	{
+        	"number": 3,
+        	"title": "Which of the following statements about methods are true? (Choose all that apply.)",
+        	"code": null,
+        	"multipleOptions": true,
+        	"options": [
+            	{ "id": "A", "text": "Overloaded methods must have the same signature" },
+            	{ "id": "B", "text": "Overridden methods must have the same signature" },
+            	{ "id": "C", "text": "Hidden methods must have the same signature" },
+            	{ "id": "D", "text": "Overloaded methods must have the same return type" },
+            	{ "id": "E", "text": "Overridden methods must have the same return type" },
+            	{ "id": "F", "text": "Hidden methods must have the same return type" }
+            ],
+        	"answer": {
+            	"ids": ["C","B"],
+            	"explanation": "Overloaded methods have the same method name but a different signature (the method parameters differ), making option A incorrect. Overridden instance methods and hidden static methods must have the same signature (the name and method parameters must match), making options B and C correct. Overloaded methods can have different return types, while overridden and hidden methods can have covariant return types. None of these methods are required to use the same return type, making options D, E, and F incorrect."
+            }
+        },
+    	{
+        	"number": 4,
+        	"title": "What is the output of the following program?",
+        	"code": "1:  class Mammal {\n2:     private void sneeze() {}\n3:     public Mammal(int age) {\n4:        System.out.print(\"Mammal\");\n5:     } }\n6:  public class Platypus extends Mammal {\n7:     int sneeze() { return 1; }\n8:     public Platypus() {\n9:        System.out.print(\"Platypus\");\n10:    }\n11:    public static void main(String[] args) {\n12:       new Mammal(5);\n13:    } }",
+        	"multipleOptions": false,
+        	"options": [
+            	{ "id": "A", "text": "Platypus" },
+            	{ "id": "B", "text": "Mammal" },
+            	{ "id": "C", "text": "PlatypusMammal" },
+            	{ "id": "D", "text": "MammalPlatypus" },
+            	{ "id": "E", "text": "The code will compile if line 7 is changed" },
+            	{ "id": "F", "text": "The code will compile if line 9 is changed" }
+            ],
+        	"answer": {
+            	"ids": ["F"],
+            	"explanation": "The code will not compile as is, because the parent class Mammal does not define a no-argument constructor. For this reason, the first line of a Platypus constructor should be an explicit call to super(int), making option F the correct answer. Option E is incorrect, as line 7 compiles without issue. The sneeze() method in the Mammal class is marked private, meaning it is not inherited and therefore is not overridden in the Platypus class. For this reason, the sneeze() method in the Platypus class is free to define the same method with any return type."
+            }
+        },
+    	{
+        	"number": 5,
+        	"title": "Which of the following complete the constructor so that this code prints out 50? (Choose all that apply.)",
+        	"code": "class Speedster {\n   int numSpots;\n}\npublic class Cheetah extends Speedster {\n   int numSpots;\n \n   public Cheetah(int numSpots) {\n      // INSERT CODE HERE\n   }\n \n   public static void main(String[] args) {\n      Speedster s = new Cheetah(50);\n      System.out.print(s.numSpots);\n   }\n}",
+        	"multipleOptions": true,
+        	"options": [
+            	{ "id": "A", "text": "numSpots = numSpots;" },
+            	{ "id": "B", "text": "numSpots = this.numSpots;" },
+            	{ "id": "C", "text": "this.numSpots = numSpots;" },
+            	{ "id": "D", "text": "numSpots = super.numSpots;" },
+            	{ "id": "E", "text": "super.numSpots = numSpots;" },
+            	{ "id": "F", "text": "The code does not compile regardless of the code inserted into the constructor" },
+            	{ "id": "G", "text": "None of the above" }
+            ],
+        	"answer": {
+            	"ids": ["E"],
+            	"explanation": "The code compiles, making option F incorrect. An instance variable with the same name as an inherited instance variable is hidden, not overridden. This means that both variables exist, and the one that is used depends on the location and reference type. Because the main() method uses a reference type of Speedster to access the numSpots variable, the variable in the Speedster class, not the Cheetah class, must be set to 50. Option A is incorrect, as it reassigns the method parameter to itself. Option B is incorrect, as it assigns the method parameter the value of the instance variable in Cheetah, which is 0. Option C is incorrect, as it assigns the value to the instance variable in Cheetah, not Speedster. Option D is incorrect, as it assigns the method parameter the value of the instance variable in Speedster, which is 0. Options A, B, C, and D all print 0 at runtime. Option E is the only correct answer, as it assigns the instance variable numSpots in the Speedster class a value of 50. The numSpots variable in the Speedster class is then correctly referenced in the main() method, printing 50 at runtime."
+            }
+        },
+    	{
+        	"number": 6,
+        	"title": "Which of the following declare immutable classes? (Choose all that apply.)",
+        	"code": "public final class Moose {\n   private final int antlers; \n}\n \npublic class Caribou {\n   private int antlers = 10; \n}\n \npublic class Reindeer {\n   private final int antlers = 5; \n}\n \npublic final class Elk {}\n \npublic final class Deer {\n   private final Object o = new Object();\n}",
+        	"multipleOptions": true,
+        	"options": [
+            	{ "id": "A", "text": "Moose" },
+            	{ "id": "B", "text": "Caribou" },
+            	{ "id": "C", "text": "Reindeer" },
+            	{ "id": "D", "text": "Elk" },
+            	{ "id": "E", "text": "Deer" },
+            	{ "id": "F", "text": "None of the above" }
+            ],
+        	"answer": {
+            	"ids": ["D","E"],
+            	"explanation": "The Moose class doesn't compile, as the final variable antlers is not initialized when it is declared, in an instance initializer, or in a constructor. Caribou and Reindeer are not immutable because they are not marked final, which means a subclass could extend them and add mutable fields. Elk and Deer are both immutable classes since they are marked final and only include private final members, making options D and E correct. As shown with Elk, a class doesn't need to declare any fields to be considered immutable."
+            }
+        },
+    	{
+        	"number": 7,
+        	"title": "What is the output of the following code?",
+        	"code": "1:  class Arthropod {\n2:     protected void printName(long input) {\n3:        System.out.print(\"Arthropod\");\n4:     }\n5:     void printName(int input) {\n6:        System.out.print(\"Spooky\");\n7:     } }\n8:  public class Spider extends Arthropod {\n9:     protected void printName(int input) {\n10:       System.out.print(\"Spider\");\n11:    }\n12:    public static void main(String[] args) {\n13:       Arthropod a = new Spider();\n14:       a.printName((short)4);\n15:       a.printName(4);\n16:       a.printName(5L);\n17:    } }",
+        	"multipleOptions": false,
+        	"options": [
+            	{ "id": "A", "text": "SpiderSpiderArthropod" },
+            	{ "id": "B", "text": "SpiderSpiderSpider" },
+            	{ "id": "C", "text": "SpiderSpookyArthropod" },
+            	{ "id": "D", "text": "SpookySpiderArthropod" },
+            	{ "id": "E", "text": "The code will not compile because of line 5" },
+            	{ "id": "F", "text": "The code will not compile because of line 9" },
+            	{ "id": "G", "text": "None of the above" }
+            ],
+        	"answer": {
+            	"ids": ["A"],
+            	"explanation": "The code compiles and runs without issue, so options E and F are incorrect. The Arthropod class defines two overloaded versions of the printName() method. The printName() method that takes an int value on line 5 is correctly overridden in the Spider class on line 9. Remember, an overridden method can have a broader access modifier, and protected access is broader than package access. Because of polymorphism, the overridden method replaces the method on all calls, even if an Arthropod reference variable is used, as is done in the main() method. For these reasons, the overridden method is called on lines 14 and 15, printing Spider twice. Note that the short value is automatically cast to the larger type of int, which then uses the overridden method. Line 16 calls the overloaded method in the Arthropod class, as the long value 5L does not match the overridden method, resulting in Arthropod being printed. Therefore, option A is the correct answer."
+            }
+        },
+    	{
+        	"number": 8,
+        	"title": "What is the result of the following code?",
+        	"code": "1:  abstract class Bird {\n2:     private final void fly() { System.out.println(\"Bird\"); }\n3:     protected Bird() { System.out.print(\"Wow-\"); }\n4:  }\n5:  public class Pelican extends Bird {\n6:     public Pelican() { System.out.print(\"Oh-\"); }\n7:     protected void fly() { System.out.println(\"Pelican\"); }\n8:     public static void main(String[] args) {\n9:        var chirp = new Pelican();\n10:       chirp.fly();\n11: } }",
+        	"multipleOptions": false,
+        	"options": [
+            	{ "id": "A", "text": "Oh-Bird" },
+            	{ "id": "B", "text": "Oh-Pelican" },
+            	{ "id": "C", "text": "Wow-Oh-Bird" },
+            	{ "id": "D", "text": "Wow-Oh-Pelican" },
+            	{ "id": "E", "text": "The code contains a compilation error" },
+            	{ "id": "F", "text": "None of the above" }
+            ],
+        	"answer": {
+            	"ids": ["D"],
+            	"explanation": "The code compiles without issue. The question is making sure you know that superclass constructors are called in the same manner in abstract classes as they are in non-abstract classes. Line 9 calls the constructor on line 6. The compiler automatically inserts super() as the first line of the constructor defined on line 6. The program then calls the constructor on line 3 and prints Wow-. Control then returns to line 6, and Oh- is printed. Finally, the method call on line 10 uses the version of fly() in the Pelican class, since it is marked private and the reference type of var is resolved as Pelican. The final output is Wow-Oh-Pelican, making option D the correct answer. Remember that private methods cannot be overridden. If the reference type of chirp was Bird, then the code would not compile as it would not be accessible outside the class."
+            }
+        },
+    	{
+        	"number": 9,
+        	"title": "Which of the following statements about overridden methods are true? (Choose all that apply.)",
+        	"code": null,
+        	"multipleOptions": true,
+        	"options": [
+                { "id": "A", "text": "An overridden method must contain method parameters that are the same or covariant with the method parameters in the inherited method" },
+                { "id": "B", "text": "An overridden method may declare a new exception, provided it is not checked" },
+                { "id": "C", "text": "An overridden method must be more accessible than the method in the parent class" },
+                { "id": "D", "text": "An overridden method may declare a broader checked exception than the method in the parent class" },
+                { "id": "E", "text": "If an inherited method returns void, then the overridden version of the method must return void" },
+                { "id": "F", "text": "None of the above" }
+            ],
+        	"answer": {
+            	"ids": ["E","B"],
+            	"explanation": "The signature must match exactly, making option A incorrect. There is no such thing as a covariant signature. An overridden method must not declare any new checked exceptions or a checked exception that is broader than the inherited method. For this reason, option B is correct, and option D is incorrect. Option C is incorrect because an overridden method may have the same access modifier as the version in the parent class. Finally, overridden methods must have covariant return types, and only void is covariant with void, making option E correct."
+            }
+        },
+    	{
+        	"number": 10,
+        	"title": "Which of the following pairs, when inserted into the blanks, allow the code to compile? (Choose all that apply.)",
+        	"code": "1:  public class Howler {\n2:     public Howler(long shadow) {\n3:        ____________;\n4:     }\n5:     private Howler(int moon) {\n6:        super();\n7:     }\n8:  }\n9:  class Wolf extends Howler {\n10:    protected Wolf(String stars) {\n11:       super(2L);\n12:    }\n13:    public Wolf() {\n14:       ____________;\n15:    }\n16: }",
+        	"multipleOptions": true,
+        	"options": [
+            	{ "id": "A", "text": "this(3) at line 3,this(\"\") at line 14" },
+            	{ "id": "B", "text": "this() at line 3,super(1) at line 14" },
+            	{ "id": "C", "text": "this((short)1) at line 3,this(null) at line 14" },
+            	{ "id": "D", "text": "super() at line 3,super() at line 14" },
+            	{ "id": "E", "text": "this(2L) at line 3,super((short)2) at line 14" },
+            	{ "id": "F", "text": "this(5) at line 3,super(null) at line 14" },
+            	{ "id": "G", "text": "Remove lines 3 and 14" }
+            ],
+        	"answer": {
+            	"ids": ["A","C"],
+            	"explanation": "Option A is correct, as this(3) calls the constructor declared on line 5, while this(\"\") calls the constructor declared on line 10. Option B does not compile, as inserting this() at line 3 results in a compiler error, since there is no matching constructor. Option C is correct, as short can be implicitly cast to int, resulting in this((short)1) calling the constructor declared on line 5. In addition, this(null) calls the String constructor declared on line 10. Option D does not compile because inserting super() on line 14 results in an invalid constructor call. The Howler class does not contain a no-argument constructor. Option E is also incorrect. Inserting this(2L) at line 3 results in a recursive constructor definition. The compiler detects this and reports an error. Option F is incorrect, as using super(null) on line 14 does not match any parent constructors. If an explicit cast was used, such as super((Integer)null), then the code would have compiled but would throw an exception at runtime during unboxing. Finally, option G is incorrect because the superclass Howler does not contain a no-argument constructor. Therefore, the constructor declared on line 13 will not compile without an explicit call to an overloaded or parent constructor."
+            }
+        },
+    	{
+        	"number": 11,
+        	"title": "What is the result of the following?",
+        	"code": "1:  public class PolarBear {\n2:     StringBuilder value = new StringBuilder(\"t\");\n3:     { value.append(\"a\"); }\n4:     { value.append(\"c\"); }\n5:     private PolarBear() {\n6:        value.append(\"b\");\n7:     }\n8:     public PolarBear(String s) {\n9:        this();\n10:       value.append(s);\n11:    }\n12:    public PolarBear(CharSequence p) {\n13:       value.append(p);\n14:    }\n15:    public static void main(String[] args) {\n16:       Object bear = new PolarBear();\n17:       bear = new PolarBear(\"f\");\n18:       System.out.println(((PolarBear)bear).value);\n19:    } }",
+        	"multipleOptions": false,
+        	"options": [
+            	{ "id": "A", "text": "tacb" },
+            	{ "id": "B", "text": "tacf" },
+            	{ "id": "C", "text": "tacbf" },
+            	{ "id": "D", "text": "tcafb" },
+            	{ "id": "E", "text": "taftacb" },
+            	{ "id": "F", "text": "The code does not compile" },
+            	{ "id": "G", "text": "An exception is thrown" }
+            ],
+        	"answer": {
+            	"ids": ["C"],
+            	"explanation": "The code compiles and runs without issue, making options F and G incorrect. Line 16 initializes a PolarBear instance and assigns it to the bear reference. The variable declaration and instance initializers are run first, setting value to tac. The constructor declared on line 5 is called, resulting in value being set to tacb. Remember, a static main() method can access private constructors declared in the same class. Line 17 creates another PolarBear instance, replacing the bear reference declared on line 16. First, value is initialized to tac as before. Line 17 calls the constructor declared on line 8, since String is the narrowest match of a String literal. This constructor then calls the overloaded constructor declared on line 5, resulting in value being updated to tacb. Control returns to the previous constructor, with line 10 updating value to tacbf, and making option C the correct answer. Note that if the constructor declared on line 8 did not exist, then the constructor on line 12 would match. Finally, the bear reference is properly cast to PolarBear on line 18, making the value parameter accessible."
+            }
+        },
+    	{
+        	"number": 12,
+        	"title": "How many lines of the following program contain a compilation error?",
+        	"code": "1:  public class Rodent {\n2:     public Rodent(Integer x) {}\n3:     protected static Integer chew() throws Exception {\n4:        System.out.println(\"Rodent is chewing\");\n5:        return 1;\n6:     }\n7:  }\n8:  class Beaver extends Rodent {\n9:     public Number chew() throws RuntimeException {\n10:       System.out.println(\"Beaver is chewing on wood\");\n11:       return 2;\n12:    } }",
+        	"multipleOptions": false,
+        	"options": [
+            	{ "id": "A", "text": "None" },
+            	{ "id": "B", "text": "1" },
+            	{ "id": "C", "text": "2" },
+            	{ "id": "D", "text": "3" },
+            	{ "id": "E", "text": "4" },
+            	{ "id": "F", "text": "5" }
+            ],
+        	"answer": {
+            	"ids": ["C"],
+            	"explanation": "The code doesn't compile, so option A is incorrect. The first compilation error is on line 8. Since Rodent declares at least one constructor and it is not a no-argument constructor, Beaver must declare a constructor with an explicit call to a super() constructor. Line 9 contains two compilation errors. First, the return types are not covariant since Number is a supertype, not a subtype, of Integer. Second, the inherited method is static, but the overridden method is not, making this an invalid override. The code contains three compilation errors, although they are limited to two lines, making option C the correct answer."
+            }
+        },
+    	{
+        	"number": 13,
+        	"title": "Which of these classes compile and will include a default constructor created by the compiler? (Choose all that apply.)",
+        	"code": null,
+        	"multipleOptions": true,
+        	"options": [
+            	{ "id": "A", "text": "public class Bird {}" },
+            	{ "id": "B", "text": "public class Bird {\n  public bird() {}\n}" },
+            	{ "id": "C", "text": "public class Bird {\n  public bird(String name) {}\n}" },
+            	{ "id": "D", "text": "public class Bird {\n  public Bird() {}\n}" },
+            	{ "id": "E", "text": "public class Bird {\n  Bird(String name) {}\n}" },
+            	{ "id": "F", "text": "public class Bird {\n  private Bird(int age) {}\n}" },
+            	{ "id": "G", "text": "public class Bird {\n  public Bird bird() { return null; }\n}" }
+            ],
+        	"answer": {
+            	"ids": ["A","G"],
+            	"explanation": "The compiler will insert a default no-argument constructor if the class compiles and does not define any constructors. Options A and G fulfill this requirement, making them the correct answers. The bird() declaration in option G is a method declaration, not a constructor. Options B and C do not compile. Since the constructor name does not match the class name, the compiler treats these as methods with missing return types. Options D, E, and F all compile, but since they declare at least one constructor, the compiler does not supply one."
+            }
+        },
+    	{
+        	"number": 14,
+        	"title": "Which of the following statements about inheritance are correct? (Choose all that apply.)",
+        	"code": null,
+        	"multipleOptions": true,
+        	"options": [
+            	{ "id": "A", "text": "A class can directly extend any number of classes" },
+            	{ "id": "B", "text": "A class can implement any number of interfaces" },
+            	{ "id": "C", "text": "All variables inherit java.lang.Object" },
+            	{ "id": "D", "text": "If class A is extended by B, then B is a superclass of A" },
+            	{ "id": "E", "text": "If class C implements interface D, then C is a subtype of D" },
+            	{ "id": "F", "text": "Multiple inheritance is the property of a class to have multiple direct superclasses" }
+            ],
+        	"answer": {
+            	"ids": ["F","E","B"],
+            	"explanation": "A class can only directly extend a single class, making option A incorrect. A class can implement any number of interfaces, though, making option B correct. Option C is incorrect because primitive variables types do not inherit java.lang.Object. If a class extends another class, then it is a subclass, not a superclass, making option D incorrect. A class that implements an interface is a subtype of that interface, making option E correct. Finally, option F is correct as it is an accurate description of multiple inheritance, which is not permitted in Java."
+            }
+        },
+    	{
+        	"number": 15,
+        	"title": "Which statements about the following program are correct? (Choose all that apply.)",
+        	"code": "1: abstract class Nocturnal {\n2:    boolean isBlind();\n3: }\n4: public class Owl extends Nocturnal {\n5:    public boolean isBlind() { return false; }\n6:    public static void main(String[] args) {\n7:       var nocturnal = (Nocturnal)new Owl();\n8:       System.out.println(nocturnal.isBlind());\n9: } }",
+        	"multipleOptions": true,
+        	"options": [
+            	{ "id": "A", "text": "It compiles and prints true" },
+            	{ "id": "B", "text": "It compiles and prints false" },
+            	{ "id": "C", "text": "The code will not compile because of line 2" },
+            	{ "id": "D", "text": "The code will not compile because of line 5" },
+            	{ "id": "E", "text": "The code will not compile because of line 7" },
+            	{ "id": "F", "text": "The code will not compile because of line 8" },
+            	{ "id": "G", "text": "None of the above" }
+            ],
+        	"answer": {
+            	"ids": ["C"],
+            	"explanation": "The code does not compile because the isBlind() method in Nocturnal is not marked abstract and does not contain a method body. The rest of the lines compile without issue, making option C the only correct answer. If the abstract modifier was added to line 2, then the code would compile and print false at runtime, making option B the correct answer."
+            }
+        },
+    	{
+        	"number": 16,
+        	"title": "What is the result of the following?",
+        	"code": "1:  class Arachnid {\n2:     static StringBuilder sb = new StringBuilder();\n3:     { sb.append(\"c\"); }\n4:     static\n5:     { sb.append(\"u\"); }\n6:     { sb.append(\"r\"); }\n7:  }\n8:  public class Scorpion extends Arachnid {\n9:     static\n10:    { sb.append(\"q\"); }\n11:    { sb.append(\"m\"); }\n12:    public static void main(String[] args) {\n13:       System.out.print(Scorpion.sb + \" \");\n14:       System.out.print(Scorpion.sb + \" \");\n15:       new Arachnid();\n16:       new Scorpion();\n17:       System.out.print(Scorpion.sb);\n18:    } }",
+        	"multipleOptions": false,
+        	"options": [
+            	{ "id": "A", "text": "qu qu qumrcrc" },
+            	{ "id": "B", "text": "u u ucrcrm" },
+            	{ "id": "C", "text": "uq uq uqmcrcr" },
+            	{ "id": "D", "text": "uq uq uqcrcrm" },
+            	{ "id": "E", "text": "qu qu qumcrcr" },
+            	{ "id": "F", "text": "qu qu qucrcrm" },
+            	{ "id": "G", "text": "The code does not compile" }
+            ],
+        	"answer": {
+            	"ids": ["D"],
+            	"explanation": "The code compiles, so option G is incorrect. Based on order of initialization, the static components are initialized first, starting with the Arachnid class, since it is the parent of the Scorpion class, which initializes the StringBuilder to u. The static initializer in Scorpion then updates sb to contain uq, which is printed twice by lines 13 and 14 along with spaces separating the values. Next, an instance of Arachnid is initialized on line 15. There are two instance initializers in Arachnid, and they run in order, appending cr to the StringBuilder, resulting in a value of uqcr. An instance of Scorpion is then initialized on line 16. The instance initializers in the superclass Arachnid run first, appending cr again and updating the value of sb to uqcrcr. Finally, the instance initializer in Scorpion runs and appends m. The program completes with the final value printed being uq uq uqcrcrm, making option D the correct answer."
+            }
+        },
+    	{
+        	"number": 17,
+        	"title": "Which of the following are true? (Choose all that apply.)",
+        	"code": null,
+        	"multipleOptions": true,
+        	"options": [
+            	{ "id": "A", "text": "this() can be called from anywhere in a constructor" },
+            	{ "id": "B", "text": "this() can be called from anywhere in an instance method" },
+            	{ "id": "C", "text": "this.variableName can be called from any instance method in the class" },
+            	{ "id": "D", "text": "this.variableName can be called from any static method in the class" },
+            	{ "id": "E", "text": "You can call the default constructor written by the compiler using this()" },
+            	{ "id": "F", "text": "You can access a private constructor with the main() method in the same class" }
+            ],
+        	"answer": {
+            	"ids": ["C","F"],
+            	"explanation": "Calling an overloaded constructor with this() may be used only as the first line of a constructor, making options A and B incorrect. Accessing this.variableName can be performed from any instance method, constructor, or instance initializer, but not from a static method or static initializer. For this reason, option C is correct, and option D is incorrect. Option E is tricky. The default constructor is written by the compiler only if no user-defined constructors were provided. And this() can only be called from a constructor in the same class. Since there can be no user-defined constructors in the class if a default constructor was created, it is impossible for option E to be true. Since the main() method is in the same class, it can call private methods in the class, making option F correct."
+            }
+        },
+    	{
+        	"number": 18,
+        	"title": "Which statements about the following classes are correct? (Choose all that apply.)",
+        	"code": "1:  public class Mammal {\n2:     private void eat() {}\n3:     protected static void drink() {}\n4:     public Integer dance(String p) { return null; }\n5:  }\n6:  class Primate extends Mammal {\n7:     public void eat(String p) {}\n8:  }\n9:  class Monkey extends Primate {\n10:    public static void drink() throws RuntimeException {}\n11:    public Number dance(CharSequence p) { return null; }\n12:    public int eat(String p) {}\n13: }",
+        	"multipleOptions": true,
+        	"options": [
+            	{ "id": "A", "text": "The eat() method in Mammal is correctly overridden on line 7" },
+            	{ "id": "B", "text": "The eat() method in Mammal is correctly overloaded on line 7" },
+            	{ "id": "C", "text": "The drink() method in Mammal is correctly overridden on line 10" },
+            	{ "id": "D", "text": "The drink() method in Mammal is correctly hidden on line 10" },
+            	{ "id": "E", "text": "The dance() method in Mammal is correctly overridden on line 11" },
+            	{ "id": "F", "text": "The dance() method in Mammal is correctly overloaded on line 11" },
+            	{ "id": "G", "text": "The eat() method in Primate is correctly hidden on line 12" },
+            	{ "id": "H", "text": "The eat() method in Primate is correctly overloaded on line 12" }
+            ],
+        	"answer": {
+            	"ids": ["D","F"],
+            	"explanation": "The eat() method is private in the Mammal class. Since it is not inherited in the Primate class, it is neither overridden nor overloaded, making options A and B incorrect. The drink() method in Mammal is correctly hidden in the Monkey class, as the signature is the same and both are static, making option D correct and option C incorrect. The version in the Monkey class throws a new exception, but it is unchecked; therefore, it is allowed. The dance() method in Mammal is correctly overloaded in the Monkey class because the signatures are not the same, making option E incorrect and option F correct. For methods to be overridden, the signatures must match exactly. Finally, line 12 is an invalid override and does not compile, as int is not covariant with void, making options G and H both incorrect."
+            }
+        },
+    	{
+        	"number": 19,
+        	"title": "What is the output of the following code?",
+        	"code": "1:  class Reptile {\n2:     {System.out.print(\"A\");}\n3:     public Reptile(int hatch) {}\n4:     void layEggs() {\n5:        System.out.print(\"Reptile\");\n6:     } }\n7:  public class Lizard extends Reptile {\n8:     static {System.out.print(\"B\");}\n9:     public Lizard(int hatch) {}\n10:    public final void layEggs() {\n11:       System.out.print(\"Lizard\");\n12:    }\n13:    public static void main(String[] args) {\n14:       var reptile = new Lizard(1);\n15:       reptile.layEggs();\n16:    } }",
+        	"multipleOptions": false,
+        	"options": [
+            	{ "id": "A", "text": "AALizard" },
+            	{ "id": "B", "text": "BALizard" },
+            	{ "id": "C", "text": "BLizardA" },
+            	{ "id": "D", "text": "ALizard" },
+            	{ "id": "E", "text": "The code will not compile because of line 3" },
+            	{ "id": "F", "text": "None of the above" }
+            ],
+        	"answer": {
+            	"ids": ["F"],
+            	"explanation": "The Reptile class defines a constructor, but it is not a no-argument constructor. Therefore, the Lizard constructor must explicitly call super(), passing in an int value. For this reason, line 9 does not compile, and option F is the correct answer. If the Lizard class were corrected to call the appropriate super() constructor, then the program would print BALizard at runtime, with the static initializer running first, followed by the instance initializer, and finally the method call using the overridden method."
+            }
+        },
+    	{
+        	"number": 20,
+        	"title": "Which statement about the following program is correct?",
+        	"code": "1:  class Bird {\n2:     int feathers = 0;\n3:     Bird(int x) { this.feathers = x; }\n4:     Bird fly() {\n5:        return new Bird(1);\n6:     } }\n7:  class Parrot extends Bird {\n8:     protected Parrot(int y) { super(y); }\n9:     protected Parrot fly() {\n10:       return new Parrot(2);\n11:    } }\n12: public class Macaw extends Parrot {\n13:    public Macaw(int z) { super(z); }\n14:    public Macaw fly() {\n15:       return new Macaw(3);\n16:    }\n17:    public static void main(String… sing) {\n18:       Bird p = new Macaw(4);\n19:       System.out.print(((Parrot)p.fly()).feathers);\n20:    } }",
+        	"multipleOptions": false,
+        	"options": [
+            	{ "id": "A", "text": "One line contains a compiler error" },
+            	{ "id": "B", "text": "Two lines contain compiler errors" },
+            	{ "id": "C", "text": "Three lines contain compiler errors" },
+            	{ "id": "D", "text": "The code compiles but throws a ClassCastException at runtime" },
+            	{ "id": "E", "text": "The program compiles and prints 3" },
+            	{ "id": "F", "text": "The program compiles and prints 0" }
+            ],
+        	"answer": {
+            	"ids": ["E"],
+            	"explanation": "The program compiles and runs without issue, making options A through D incorrect. The fly() method is correctly overridden in each subclass since the signature is the same, the access modifier is less restrictive, and the return types are covariant. For covariance, Macaw is a subtype of Parrot, which is a subtype of Bird, so overridden return types are valid. Likewise, the constructors are all implemented properly, with explicit calls to the parent constructors as needed. Line 19 calls the overridden version of fly() defined in the Macaw class, as overriding replaces the method regardless of the reference type. This results in feathers being assigned a value of 3. The Macaw object is then cast to Parrot, which is allowed because Macaw inherits Parrot. The feathers variable is visible since it is defined in the Bird class, and line 19 prints 3, making option E the correct answer."
+            }
+        },
+    	{
+        	"number": 21,
+        	"title": "Which of the following are properties of immutable classes? (Choose all that apply.)",
+        	"code": null,
+        	"multipleOptions": true,
+        	"options": [
+            	{ "id": "A", "text": "The class can contain setter methods, provided they are marked final" },
+            	{ "id": "B", "text": "The class must not be able to be extended outside the class declaration" },
+            	{ "id": "C", "text": "The class may not contain any instance variables" },
+            	{ "id": "D", "text": "The class must be marked static" },
+            	{ "id": "E", "text": "The class may not contain any static variables" },
+            	{ "id": "F", "text": "The class may only contain private constructors" },
+            	{ "id": "G", "text": "The data for mutable instance variables may be read, provided they cannot be modified by the caller" }
+            ],
+        	"answer": {
+            	"ids": ["B","G"],
+            	"explanation": "Immutable objects do not include setter methods, making option A incorrect. An immutable class must be marked final or contain only private constructors, so no subclass can extend it and make it mutable, making option B correct. Options C and E are incorrect, as immutable classes can contain both instance and static variables. Option D is incorrect, as marking a class static is not a property of immutable objects. Option F is incorrect. While an immutable class may contain only private constructors, this is not a requirement. Finally, option G is correct. It is allowed for the caller to access data in mutable elements of an immutable object, provided they have no ability to modify these elements."
+            }
+        },
+    	{
+        	"number": 22,
+        	"title": "What does the following program print?",
+        	"code": "1:  class Person {\n2:     static String name;\n3:     void setName(String q) { name = q; } }\n4:  public class Child extends Person {\n5:     static String name;\n6:     void setName(String w) { name = w; }\n7:     public static void main(String[] p) {\n8:        final Child m = new Child();\n9:        final Person t = m;\n10:       m.name = \"Elysia\";\n11:       t.name = \"Sophia\";\n12:       m.setName(\"Webby\");\n13:       t.setName(\"Olivia\");\n14:       System.out.println(m.name + \" \" + t.name);\n15:    } }",
+        	"multipleOptions": false,
+        	"options": [
+            	{ "id": "A", "text": "Elysia Sophia" },
+            	{ "id": "B", "text": "Webby Olivia" },
+            	{ "id": "C", "text": "Olivia Olivia" },
+            	{ "id": "D", "text": "Olivia Sophia" },
+            	{ "id": "E", "text": "The code does not compile" },
+            	{ "id": "F", "text": "None of the above" }
+            ],
+        	"answer": {
+            	"ids": ["D"],
+            	"explanation": "The code compiles and runs without issue, making option E incorrect. The Child class overrides the setName() method and hides the static name variable defined in the inherited Person class. Since variables are only hidden, not overridden, there are two distinct name variables accessible, depending on the location and reference type. Line 8 creates a Child instance, which is implicitly cast to a Person reference type on line 9. Line 10 uses the Child reference type, updating Child.name to Elysia. Line 11 uses the Person reference type, updating Person.name to Sophia. Lines 12 and 13 both call the overridden setName() instance method declared on line 6. This sets Child.name to Webby on line 12 and then to Olivia on line 13. The final values of Child.name and Person.name are Olivia and Sophia, respectively, making option D the correct answer."
+            }
+        },
+    	{
+        	"number": 23,
+        	"title": "What is the output of the following program?",
+        	"code": "1:  class Canine {\n2:     public Canine(boolean t) { logger.append(\"a\"); }\n3:     public Canine() { logger.append(\"q\"); }\n4:     \n5:     private StringBuilder logger = new StringBuilder();\n6:     protected void print(String v) { logger.append(v); }\n7:     protected String view() { return logger.toString(); }\n8:  }\n9:  \n10: class Fox extends Canine {\n11:    public Fox(long x) { print(\"p\"); }\n12:    public Fox(String name) {\n13:       this(2);\n14:       print(\"z\");\n15:    }\n16: }\n17:\n18: public class Fennec extends Fox {\n19:    public Fennec(int e) {\n20:       super(\"tails\");\n21:       print(\"j\");\n22:    }\n23:    public Fennec(short f) {\n24:       super(\"eevee\");\n25:       print(\"m\");\n26:    }\n27: \n28:    public static void main(String… unused) {\n29:       System.out.println(new Fennec(1).view());\n30:    } }",
+        	"multipleOptions": false,
+        	"options": [
+            	{ "id": "A", "text": "qpz" },
+            	{ "id": "B", "text": "qpzj" },
+            	{ "id": "C", "text": "jzpa" },
+            	{ "id": "D", "text": "apj" },
+            	{ "id": "E", "text": "apjm" },
+            	{ "id": "F", "text": "The code does not compile" },
+            	{ "id": "G", "text": "None of the above" }
+            ],
+        	"answer": {
+            	"ids": ["B"],
+            	"explanation": "The program compiles, making option F incorrect. The constructors are called from the child class upward, but since each line of a constructor is a call to another constructor, via this() or super(), they are ultimately executed in a top-down manner. On line 29, the main() method calls the Fennec() constructor declared on line 19. Remember, integer literals in Java are considered int by default. This constructor calls the Fox() constructor defined on line 12, which in turn calls the overloaded Fox() constructor declared on line 11. Since the constructor on line 11 does not explicitly call a parent constructor, the compiler inserts a call to the no- argument super() constructor, which exists on line 3 of the Canine class. Line 3 is then executed, adding q to the output, and the compiler chain is unwound. Line 11 then executes, adding p, followed by line 14, adding z. Finally, line 21 is executed, and j is added, resulting in a final value for logger of qpzj, and making option B correct. For the exam, remember to follow constructors from the lowest level upward to determine the correct pathway, but then execute them from the top down using the established order.24. C.  The code compiles and runs without issue, making options E and F incorrect. First, the class is initialized, starting with the superclass Antelope and then the subclass Gazelle. This involves invoking the static variable declarations and static initializers. The program first prints 1, followed by 8. Then we follow the constructor pathway from the object created on line 14 upward, initializing each class instance using a top-down approach. Within each class, the instance initializers are run, followed by the referenced constructors. The Antelope instance is initialized, printing 24, followed by the Gazelle instance, printing 93. The final output is 182493, making option C the correct answer."
+            }
+        },
+    	{
+        	"number": 24,
+        	"title": "What is printed by the following program?",
+        	"code": "1:  class Antelope {\n2:     public Antelope(int p) {\n3:        System.out.print(\"4\");\n4:     }\n5:     { System.out.print(\"2\"); }\n6:     static { System.out.print(\"1\"); }\n7:  }\n8:  public class Gazelle extends Antelope {\n9:     public Gazelle(int p) {\n10:       super(6);\n11:       System.out.print(\"3\");\n12:    }\n13:    public static void main(String hopping[]) {\n14:       new Gazelle(0);\n15:    }\n16:    static { System.out.print(\"8\"); }\n17:    { System.out.print(\"9\"); }\n18: }",
+        	"multipleOptions": false,
+        	"options": [
+            	{ "id": "A", "text": "182640" },
+            	{ "id": "B", "text": "182943" },
+            	{ "id": "C", "text": "182493" },
+            	{ "id": "D", "text": "421389" },
+            	{ "id": "E", "text": "The code does not compile" },
+            	{ "id": "F", "text": "The output cannot be determined until runtime" }
+            ],
+            "answer": {
+                "ids": ["C"],
+                "explanation": "The code compiles and runs without issue, making options E and F incorrect. First, the class is initialized, starting with the superclass Antelope and then the subclass Gazelle. This involves invoking the static variable declarations and static initializers. The program first prints 1, followed by 8. Then we follow the constructor pathway from the object created on line 14 upward, initializing each class instance using a top-down approach. Within each class, the instance initializers are run, followed by the referenced constructors. The Antelope instance is initialized, printing 24, followed by the Gazelle instance, printing 93. The final output is 182493, making option C the correct answer."
+            }
+        },
+    	{
+        	"number": 25,
+        	"title": "Which of the following are true about a concrete class? (Choose all that apply.)",
+        	"code": null,
+        	"multipleOptions": true,
+        	"options": [
+            	{ "id": "A", "text": "A concrete class can be declared as abstract" },
+            	{ "id": "B", "text": "A concrete class must implement all inherited abstract methods" },
+            	{ "id": "C", "text": "A concrete class can be marked as final" },
+            	{ "id": "D", "text": "A concrete class must be immutable" },
+            	{ "id": "E", "text": "A concrete method that implements an abstract method must match the method declaration of the abstract method exactly " }
+            ],
+        	"answer": {
+            	"ids": ["B","C"],
+            	"explanation": "Concrete classes are, by definition, not abstract, so option A is incorrect. A concrete class must implement all inherited abstract methods, so option B is correct. Concrete classes can be optionally marked final, so option C is correct. Option D is incorrect; concrete classes need not be immutable. A concrete subclass only needs to override the inherited abstract method, not match the declaration exactly. For example, a covariant return type can be used. For this reason, option E is incorrect."
+            }
+        },
+    	{
+        	"number": 26,
+        	"title": "What is the output of the following code?",
+        	"code": "4:  public abstract class Whale {\n5:     public abstract void dive();\n6:     public static void main(String[] args) {\n7:        Whale whale = new Orca();\n8:        whale.dive(3);\n9:     }\n10: }\n11: class Orca extends Whale {\n12:    static public int MAX = 3;\n13:    public void dive() {\n14:       System.out.println(\"Orca diving\");\n15:    }\n16:    public void dive(int… depth) {\n17:       System.out.println(\"Orca diving deeper \"+MAX);\n18: } }",
+        	"multipleOptions": false,
+        	"options": [
+            	{ "id": "A", "text": "Orca diving" },
+            	{ "id": "B", "text": "Orca diving deeper 3" },
+            	{ "id": "C", "text": "The code will not compile because of line 4" },
+            	{ "id": "D", "text": "The code will not compile because of line 8" },
+            	{ "id": "E", "text": "The code will not compile because of line 11" },
+            	{ "id": "F", "text": "The code will not compile because of line 12" },
+            	{ "id": "G", "text": "The code will not compile because of line 17" },
+            	{ "id": "H", "text": "None of the above" }
+            ],
+        	"answer": {
+            	"ids": ["D"],
+            	"explanation": "The classes are structured correctly, but the body of the main() method contains a compiler error. The Orca object is implicitly cast to a Whale reference on line 7. This is permitted because Orca is a subclass of Whale. By performing the cast, the whale reference on line 8 does not have access to the dive(int… depth) method. For this reason, line 8 does not compile, making option D correct."
+            }
+        }
+    ]
+}
