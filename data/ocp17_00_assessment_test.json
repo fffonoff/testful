@@ -351,12 +351,12 @@
         	"code": "var pooh = \"\"\"\n   \"Oh, bother.\" -Pooh\n   \"\"\".indent(1);\nSystem.out.print(pooh);",
         	"multipleOptions": false,
         	"options": [
-            	{ "id": "A", "text": "\"\n\"Oh, bother.\" -Pooh\n\"" },
-            	{ "id": "B", "text": "\"\n \"Oh, bother.\" -Pooh\n\"" },
-            	{ "id": "C", "text": "\" \"Oh, bother.\" -Pooh\n\"" },
-            	{ "id": "D", "text": "\"\n\"Oh, bother.\" -Pooh\"" },
-            	{ "id": "E", "text": "\"\n \"Oh, bother.\" -Pooh\"" },
-            	{ "id": "F", "text": "\" \"Oh, bother.\" -Pooh\"" },
+            	{ "id": "A", "text": "\"\\n\\\"Oh, bother.\\\" -Pooh\\n\"", "isCode": true },
+            	{ "id": "B", "text": "\"\\n \\\"Oh, bother.\\\" -Pooh\\n\"", "isCode": true },
+            	{ "id": "C", "text": "\" \\\"Oh, bother.\\\" -Pooh\\n\"", "isCode": true },
+            	{ "id": "D", "text": "\"\\n\\\"Oh, bother.\\\" -Pooh\"", "isCode": true },
+            	{ "id": "E", "text": "\"\\n \\\"Oh, bother.\\\" -Pooh\"", "isCode": true },
+            	{ "id": "F", "text": "\" \\\"Oh, bother.\\\" -Pooh\"", "isCode": true },
             	{ "id": "G", "text": "None of the above" }
             ],
         	"answer": {
